@@ -49,7 +49,6 @@ public class Lexer
             }
             
             // this goes last
-            // TODO: find a way to include symbols like = and letters/numbers but exclude whitespace
             if (char.IsSymbol(c) || char.IsLetterOrDigit(c))
             {
                 string identifier = str[i].ToString();
