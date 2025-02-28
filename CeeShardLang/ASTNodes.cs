@@ -43,8 +43,28 @@ public class AssignmentExpr : Expr
     Expr Value;
 }
 
+public class BinaryExpr : Expr
+{
+    NodeType Kind = NodeType.BinaryExpr;
+    Expr Left;
+    Expr Right;
+    string Operator;
+}
+
 /*
  *
  * LITERALS
  * 
 */
+
+public class Identifier : Expr
+{
+    NodeType Kind = NodeType.Identifier;
+    string Symbol;
+}
+
+public class NumericLiteral : Expr
+{
+    NodeType Kind = NodeType.NumericLiteral;
+    double Value;
+}

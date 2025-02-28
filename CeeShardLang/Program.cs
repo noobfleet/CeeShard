@@ -1,15 +1,24 @@
-﻿namespace CeeShardLang;
+﻿using System;
+using System.IO;
+
+namespace CeeShardLang;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Lexer lexer = new Lexer();
-        List<Lexer.Token> tokens = lexer.Tokenize("var testVariable = 5;");
-        
-        for(int i = 0; i < tokens.Count; i++)
+        // basic CLI
+        while(true)
         {
-            Console.WriteLine($"[{tokens[i].Type}: {tokens[i].Value}]");
+            Console.Write("> ");
+            
+            Lexer lexer = new Lexer();
+            List<Token> tokens = lexer.Tokenize(Console.ReadLine());
+
+            for (int i = 0; i < tokens.Count; i++)
+            {
+                Console.WriteLine($"[{tokens[i].Type}: {tokens[i].Value}]");
+            }
         }
     }
 }

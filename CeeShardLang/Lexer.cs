@@ -1,5 +1,17 @@
 namespace CeeShardLang;
 
+public struct Token
+{
+    public Token(TokenType type, string value)
+    {
+        this.Type = type;
+        this.Value = value;
+    }
+        
+    public TokenType Type;
+    public string Value;
+}
+
 public class Lexer
 {
     private Dictionary<string, TokenType> KeywordType;
@@ -11,18 +23,6 @@ public class Lexer
         KeywordType.Add("var", TokenType.VarDeclaration);
         KeywordType.Add("=", TokenType.Equals);
         KeywordType.Add(";", TokenType.EndOfStmt);
-    }
-    
-    public struct Token
-    {
-        public Token(TokenType type, string value)
-        {
-            this.Type = type;
-            this.Value = value;
-        }
-        
-        public TokenType Type;
-        public string Value;
     }
     
     private List<Token> tokens = new();
