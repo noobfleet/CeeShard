@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CeeShardLang", "CeeShardLang\CeeShardLang.csproj", "{46937BF3-4016-4E42-843A-0553BBDF7AF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CeeShard", "CeeShard\CeeShard.csproj", "{46937BF3-4016-4E42-843A-0553BBDF7AF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-namespace CeeShardLang;
+namespace CeeShard;
 
 public class Stmt
 {

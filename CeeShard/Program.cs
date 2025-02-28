@@ -1,6 +1,6 @@
 ﻿// BIG TO DO: ADD THIS PACKAGE!!!!!!! https://github.com/nrother/dynamiclua
 
-namespace CeeShardLang;
+namespace CeeShard;
 
 class Program
 {

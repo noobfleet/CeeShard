@@ -1,6 +1,6 @@
 using System.Reflection.Metadata.Ecma335;
 
-namespace CeeShardLang;
+namespace CeeShard;
 
 public partial class Parser
 {
