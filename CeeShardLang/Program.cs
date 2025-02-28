@@ -7,6 +7,8 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.WriteLine("CeeShard CLI (v0.02)");
+        
         // basic CLI
         while(true)
         {
