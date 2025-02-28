@@ -21,21 +21,26 @@ public class Lexer
         KeywordType = new();
         
         KeywordType.Add("var", TokenType.VarDeclaration);
-        KeywordType.Add("=", TokenType.Equals);
-        KeywordType.Add(";", TokenType.EndOfStmt);
+        KeywordType.Add("const", TokenType.ConstantDeclaration);
     }
-    
+
     private List<Token> tokens = new();
     
-    public List<Token> Tokenize(string str)
+    public Token[] Tokenize(string str)
     {
         int i = 0;
+        char c;
         while(i < str.Length)
         {
-            char c = str[i];
+            c = str[i];
             
             // whitespace
-            if(c == '\n' || c == '\r' || c == '\t' || c == ' ') continue;
+            if(c == '\n' || c == '\r' || c == '\t' || c == ' ')
+            {
+                i++; continue; }
+            // keyword symbols
+            if(c == '='){ tokens.Add(new Token(TokenType.Equals, "=")); i++; continue; }
+            if(c == ';'){ tokens.Add(new Token(TokenType.EndOfStmt, ";")); i++; continue; }
 
             if (char.IsNumber(c))
             {
@@ -49,17 +54,17 @@ public class Lexer
             }
             
             // this goes last
-            if (char.IsSymbol(c) || char.IsLetterOrDigit(c))
+            if (char.IsAsciiLetter(c))
             {
                 string identifier = str[i].ToString();
                 i++;
-                while (i < str.Length && (char.IsLetterOrDigit(str[i]) || char.IsSymbol(str[i])))
+                while (i < str.Length && char.IsAsciiLetter(str[i]))
                 {
                     identifier += str[i];
                     i++;
                 }
 
-                if (KeywordType.TryGetValue(identifier, out TokenType t))
+                if(KeywordType.TryGetValue(identifier, out TokenType t))
                 {
                     tokens.Add(new Token(t, identifier));
                 }
@@ -72,6 +77,8 @@ public class Lexer
             i++;
         }
         
-        return tokens;
+        tokens.Add(new Token(TokenType.EndOfStmt, "EOF"));
+        
+        return tokens.ToArray();
     }
 }

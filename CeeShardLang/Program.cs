@@ -13,12 +13,13 @@ class Program
             Console.Write("> ");
             
             Lexer lexer = new Lexer();
-            List<Token> tokens = lexer.Tokenize(Console.ReadLine());
+            Parser parser = new Parser();
+            Token[] tokens = lexer.Tokenize(Console.ReadLine());
+            Stmt[] stmts = parser.produceAST(tokens);
 
-            for (int i = 0; i < tokens.Count; i++)
-            {
-                Console.WriteLine($"[{tokens[i].Type}: {tokens[i].Value}]");
-            }
+            VarDeclaration stmt = stmts[0] as VarDeclaration;
+            Console.WriteLine(stmt.Identifier);
+            // print value as if it were a binary expr
         }
     }
 }

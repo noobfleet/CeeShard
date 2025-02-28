@@ -6,8 +6,10 @@ public enum TokenType
     Identifier,
     // keywords
     VarDeclaration,
+    ConstantDeclaration,
     Equals,
     EndOfStmt,
+    EndOfFile
 }
 
 public enum NodeType

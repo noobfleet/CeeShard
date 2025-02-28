@@ -2,12 +2,12 @@ namespace CeeShardLang;
 
 public class Stmt
 {
-    NodeType Kind;
+    public NodeType Kind;
 }
 
-public class Expr
+public class Expr : Stmt
 {
-    NodeType Kind;
+    
 }
 
 /*
@@ -18,16 +18,16 @@ public class Expr
 
 public class LangProgram : Stmt
 {
-    NodeType Kind = NodeType.Program;
-    Stmt[] Body;
+    public NodeType Kind = NodeType.Program;
+    public List<Stmt> Body = new();
 }
 
 public class VarDeclaration : Stmt
 {
-    NodeType Kind = NodeType.VarDeclaration;
-    bool IsConstant;
-    string Identifier;
-    Expr Value;
+    public NodeType Kind = NodeType.VarDeclaration;
+    public bool IsConstant;
+    public string Identifier;
+    public Expr Value;
 }
 
 /*
@@ -38,17 +38,17 @@ public class VarDeclaration : Stmt
 
 public class AssignmentExpr : Expr
 {
-    NodeType Kind = NodeType.AssignmentExpr;
-    Expr Assignee;
-    Expr Value;
+    public NodeType Kind = NodeType.AssignmentExpr;
+    public Expr Assignee;
+    public Expr Value;
 }
 
 public class BinaryExpr : Expr
 {
-    NodeType Kind = NodeType.BinaryExpr;
-    Expr Left;
-    Expr Right;
-    string Operator;
+    public NodeType Kind = NodeType.BinaryExpr;
+    public Expr Left;
+    public Expr Right;
+    public string Operator;
 }
 
 /*
@@ -59,12 +59,12 @@ public class BinaryExpr : Expr
 
 public class Identifier : Expr
 {
-    NodeType Kind = NodeType.Identifier;
-    string Symbol;
+    public NodeType Kind = NodeType.Identifier;
+    public string Symbol;
 }
 
 public class NumericLiteral : Expr
 {
-    NodeType Kind = NodeType.NumericLiteral;
-    double Value;
+    public NodeType Kind = NodeType.NumericLiteral;
+    public double Value;
 }

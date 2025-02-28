@@ -1,6 +1,8 @@
+using System.Reflection.Metadata.Ecma335;
+
 namespace CeeShardLang;
 
-public class AST
+public partial class Parser
 {
     private Token[] tokens;
     // you could just shift the entire array by one every time you call advance() but thats bad for performance
@@ -16,7 +18,7 @@ public class AST
         return tokens[currentTokenIndex++];
     }
     
-    private Token? expect(TokenType expectedType)
+    private Token expect(TokenType expectedType)
     {
         Token previousToken = advance();
 
@@ -26,5 +28,20 @@ public class AST
         }
         
         return previousToken;
+    }
+
+    public Stmt[] produceAST(Token[] tokens)
+    {
+        this.tokens = tokens;
+        currentTokenIndex = 0;
+        
+        List<Stmt> tree = new();
+
+        while(currentTokenIndex < tokens.Length)
+        {
+            tree.Add(ParseStmt());
+        }
+        
+        return tree.ToArray();
     }
 }
