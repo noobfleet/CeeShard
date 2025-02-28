@@ -18,14 +18,33 @@ public partial class Parser
         }
     }
     
-    private Expr parseMultiplicativeExpr()
+    private Expr parseExponentialExpr()
     {
         Expr left = parsePrimaryExpr();
+
+        while(at().Value == "^")
+        {
+            string op = advance().Value;
+            Expr right = ParseExpr();
+            
+            BinaryExpr binaryExpr = new BinaryExpr();
+            binaryExpr.Operator = op;
+            binaryExpr.Left = left;
+            binaryExpr.Right = right;
+            return binaryExpr;
+        }
+        
+        return left;
+    }
+    
+    private Expr parseMultiplicativeExpr()
+    {
+        Expr left = parseExponentialExpr();
 
         while(at().Value == "*" || at().Value == "/" || at().Value == "%")
         {
             string op = advance().Value;
-            Expr right = parsePrimaryExpr();
+            Expr right = ParseExpr();
             
             BinaryExpr binaryExpr = new BinaryExpr();
             binaryExpr.Operator = op;
@@ -44,7 +63,7 @@ public partial class Parser
         while(at().Value == "+" || at().Value == "-")
         {
             string op = advance().Value;
-            Expr right = parseMultiplicativeExpr();
+            Expr right = ParseExpr();
             
             BinaryExpr binaryExpr = new BinaryExpr();
             binaryExpr.Operator = op;

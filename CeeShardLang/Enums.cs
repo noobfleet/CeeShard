@@ -8,6 +8,7 @@ public enum TokenType
     VarDeclaration,
     ConstantDeclaration,
     Equals,
+    Operator,
     EndOfStmt,
     EndOfFile
 }

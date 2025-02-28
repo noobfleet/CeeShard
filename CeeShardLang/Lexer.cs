@@ -41,6 +41,12 @@ public class Lexer
             // keyword symbols
             if(c == '='){ tokens.Add(new Token(TokenType.Equals, "=")); i++; continue; }
             if(c == ';'){ tokens.Add(new Token(TokenType.EndOfStmt, ";")); i++; continue; }
+            if(c == '-' || c == '+' || c == '*' || c == '/' || c == '%' || c == '^')
+            {
+                tokens.Add(new Token(TokenType.Operator, c.ToString()));
+                i++;
+                continue;
+            }
 
             if (char.IsNumber(c))
             {

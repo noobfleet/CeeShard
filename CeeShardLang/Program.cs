@@ -18,8 +18,11 @@ class Program
             Stmt[] stmts = parser.produceAST(tokens);
 
             VarDeclaration stmt = stmts[0] as VarDeclaration;
-            Console.WriteLine(stmt.Identifier);
-            // print value as if it were a binary expr
+            
+            PrettyPrint pretty = new();
+            
+            Console.WriteLine("Variable name: " + stmt.Identifier);
+            Console.WriteLine("Value: " + pretty.BinaryExpr((stmts[0] as VarDeclaration).Value as BinaryExpr));
         }
     }
 }
