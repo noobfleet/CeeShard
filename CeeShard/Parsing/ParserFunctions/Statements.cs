@@ -32,6 +32,7 @@ public partial class Parser
     {
         switch(at().Type)
         {
+            case TokenType.ConstantDeclaration: return parseVarDeclaration();
             case TokenType.VarDeclaration: return parseVarDeclaration();
         }
 

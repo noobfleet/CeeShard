@@ -23,7 +23,7 @@ class Program
             PrettyPrint pretty = new();
             
             Console.WriteLine("Variable name: " + stmt.Identifier);
-            Console.WriteLine("Value: " + pretty.BinaryExpr((stmts[0] as VarDeclaration).Value as BinaryExpr));
+            Console.WriteLine("Value: " + pretty.ParseExpression(stmt.Value));
         }
     }
 }
